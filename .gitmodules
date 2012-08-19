@@ -7,3 +7,6 @@
 [submodule "ejs"]
 	path = ejs
 	url = https://github.com/chiem/ejs-final.git
+[submodule "jasmine"]
+	path = jasmine
+	url = https://github.com/chiem/jasmine-final.git
