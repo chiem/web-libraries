@@ -13,3 +13,6 @@
 [submodule "jwplayer"]
 	path = jwplayer
 	url = https://github.com/chiem/jwplayer-final.git
+[submodule "html5shiv"]
+	path = html5shiv
+	url = https://github.com/chiem/html5shiv-final.git
