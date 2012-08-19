@@ -1,0 +1,1 @@
+wget -O "${LIB_DIR}/jquery.js" http://code.jquery.com/jquery-latest.min.js
