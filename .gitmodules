@@ -1,3 +1,6 @@
 [submodule "jquery"]
 	path = jquery
 	url = https://github.com/chiem/jquery-final.git
+[submodule "jquery-ui"]
+	path = jquery-ui
+	url = https://github.com/chiem/jquery-ui-final.git
