@@ -4,3 +4,6 @@
 [submodule "jquery-ui"]
 	path = jquery-ui
 	url = https://github.com/chiem/jquery-ui-final.git
+[submodule "ejs"]
+	path = ejs
+	url = https://github.com/chiem/ejs-final.git
