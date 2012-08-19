@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+#
+# Litte bash script to update the subdirectories with the web libraries.
+#
+#     Usage: update <name of library/subdirectory>
+#
+# This script looks for a script in the `scripts' directory and execute it via
+# the `source' command. The founded script shall update the library. There are
+# some variables the update script might use:
+#
+#     LIB_NAME - the name of the library
+#     LIB_DIR  - directory of the library
+#
+# Also the above utility functions might be used.
+
+# ---------- Utility functions ----------
+
+# Shows the usage of this script
+function usage() {
+    echo -e "\e[1mUSAGE:\e[0m update <name of library/subdirectory>" 1>&2
+}
+
+# Shows an error message and exit
+#
+# Usage: error <message>
+function error() {
+    echo -e "\e[31;1mERROR:\e[0m $*" 1>&2
+    
+    exit 1
+}
+
+# Shows an info message
+#
+# Usage: info <message> 
+function info() {
+    echo -e "\e[32mINFO: \e[0m $*" 1>&2
+}
+
+# ---------- The actual script ----------
+
+# compute the directory where this script is stored
+MY_PATH=$(which "$0")
+
+case "$MY_PATH" in
+        [!/]*) MY_PATH="$( pwd )/$MY_PATH";;
+            *) MY_PATH="$MY_PATH" ;;
+esac
+
+MY_DIR=$(dirname "$MY_PATH")
+
+# check whether the help shall be showed
+ARG="$1"
+
+if [ "$ARG" = "-?" -o "$ARG" = "--help" ]; then
+    usage
+    exit 0
+fi
+
+# set necessary arguments and export them
+LIB_NAME=$( basename "$ARG" )
+LIB_DIR="${MY_DIR}/${LIB_NAME}"
+LIB_UPDATE_SCRIPT="${MY_DIR}/scripts/${LIB_NAME}"
+
+# test whether everthing is right
+if [ -z "$LIB_NAME" ]; then
+    usage
+    error "no library name is given"
+fi
+
+if [ ! -d "$LIB_DIR" ]; then
+    error "wrong argument; \`${LIB_DIR}' is no directory"
+fi
+
+if [ ! -f "$LIB_UPDATE_SCRIPT" ]; then
+    error "update script \`${LIB_UPDATE_SCRIPT}' does not exist"
+fi
+
+# run update script
+info "update library \`${LIB_NAME}'"
+
+source "$LIB_UPDATE_SCRIPT"
