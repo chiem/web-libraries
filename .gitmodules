@@ -19,3 +19,6 @@
 [submodule "yui-css-reset"]
 	path = yui-css-reset
 	url = https://github.com/chiem/yui-css-reset-final.git
+[submodule "jspod"]
+	path = jspod
+	url = https://github.com/chiem/jspod-final.git
